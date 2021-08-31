@@ -11,6 +11,8 @@
 package com.example.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,5 +39,19 @@ class CalculatorTests {
 		Calculator calculator = new Calculator();
 		assertEquals(expectedResult, calculator.add(first, second),
 				() -> first + " + " + second + " should equal " + expectedResult);
+	}
+
+	@Test
+	@DisplayName("test too many input numbers")
+	void exceptionTesting() {
+		Exception exception = assertThrows( RuntimeException.class, () ->
+				Calculator.addString("1,2,3"));
+		assertEquals("Up to 2 numbers separated by comma (,) are allowed", exception.getMessage());
+	}
+
+	@Test
+	public final void when2NumbersAreUsedThenNoExceptionIsThrown() {
+		Calculator.addString("1,2");
+		assertTrue(true);
 	}
 }
