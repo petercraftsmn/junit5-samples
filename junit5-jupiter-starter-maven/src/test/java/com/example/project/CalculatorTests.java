@@ -54,4 +54,9 @@ class CalculatorTests {
 		Calculator.addString("1,2");
 		assertTrue(true);
 	}
+
+	@Test
+	public final void whenOneNumberIsUsedThenReturnValueIsThatSameNumber() {
+		assertEquals(3, Calculator.addString("3"));
+	}
 }

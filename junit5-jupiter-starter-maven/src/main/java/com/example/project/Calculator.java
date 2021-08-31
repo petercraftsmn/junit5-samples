@@ -12,19 +12,23 @@ package com.example.project;
 
 public class Calculator {
 
-	public int add(int a, int b) {
-		return a + b;
-	}
+    public int add(int a, int b) {
+        return a + b;
+    }
 
-	public static void addString(final String numbers) {
-		String[] numbersArray = numbers.split(",");
-		if (numbersArray.length > 2) {
-			throw new RuntimeException("Up to 2 numbers separated by comma (,) are allowed");
-		} else {
-			for (String number : numbersArray) {
-				Integer.parseInt(number); // If it is not a number, parseInt will throw an exception
-			}
-		}
-	}
+    public static int addString(final String numbers) {
+        int returnValue = 0;
+        String[] numbersArray = numbers.split(",");
+        if (numbersArray.length > 2) {
+            throw new RuntimeException("Up to 2 numbers separated by comma (,) are allowed");
+        } else {
+            for (String number : numbersArray) {
+                if (!number.trim().isEmpty()) { // After refactoring
+                    returnValue += Integer.parseInt(number);
+                }
+            }
+            return returnValue;
+        }
+    }
 
 }
